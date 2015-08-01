@@ -1,0 +1,40 @@
+<wsdl:definitions xmlns:apachesoap="http://xml.apache.org/xml-soap"
+	xmlns:impl="http://localhost:8080/axis/Dado.jws" xmlns:intf="http://localhost:8080/axis/Dado.jws"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://localhost:8080/axis/Dado.jws">
+	<!-- WSDL created by Apache Axis version: 1.4 Built on Apr 22, 2006 (06:55:48 
+		PDT) -->
+	<wsdl:message name="cacularResponse">
+		<wsdl:part name="cacularReturn" type="xsd:int" />
+	</wsdl:message>
+	<wsdl:message name="cacularRequest">
+		<wsdl:part name="faces" type="xsd:int" />
+	</wsdl:message>
+	<wsdl:portType name="Dado">
+		<wsdl:operation name="cacular" parameterOrder="faces">
+			<wsdl:input message="impl:cacularRequest" name="cacularRequest" />
+			<wsdl:output message="impl:cacularResponse" name="cacularResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="DadoSoapBinding" type="impl:Dado">
+		<wsdlsoap:binding style="rpc"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="cacular">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="cacularRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://DefaultNamespace" use="encoded" />
+			</wsdl:input>
+			<wsdl:output name="cacularResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://localhost:8080/axis/Dado.jws" use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="DadoService">
+		<wsdl:port binding="impl:DadoSoapBinding" name="Dado">
+			<wsdlsoap:address location="http://localhost:8080/axis/Dado.jws" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
